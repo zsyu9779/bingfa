@@ -1,4 +1,4 @@
-package test;
+package testbiased;
 
 
 import org.openjdk.jol.info.ClassLayout;
@@ -11,6 +11,10 @@ import java.util.Vector;
  * 的 Thread ID
  * 当撤销偏向锁阈值超过 20 次后,jvm 会这样觉得,我是不是偏向错了呢,于是会在给这些对象加锁时重新偏向至
  * 加锁线程
+ *
+ * 批量撤销
+ * 当撤销偏向锁阈值超过 40 次后,jvm 会这样觉得,自己确实偏向错了,根本就不该偏向。于是整个类的所有对象
+ * 都会变为不可偏向的,新建的对象也是不可偏向的
  *
  * */
 
