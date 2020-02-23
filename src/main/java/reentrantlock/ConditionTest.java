@@ -33,7 +33,7 @@ public class ConditionTest {
                         e.printStackTrace();
                     }
                 }
-                log.debug("可以开始干活了");
+                log.debug("有烟可以开始干活了");
             } finally {
                 ROOM.unlock();
             }
@@ -51,7 +51,7 @@ public class ConditionTest {
                         e.printStackTrace();
                     }
                 }
-                log.debug("可以开始干活了");
+                log.debug("有外卖可以开始干活了");
             } finally {
                 ROOM.unlock();
             }
