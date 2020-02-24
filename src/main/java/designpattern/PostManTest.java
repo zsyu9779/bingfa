@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author: Zsyu
@@ -59,7 +60,9 @@ class Postman extends Thread{
 }
 
 class Mailboxes {
-    private static Map<Integer,GuardedObject1> boxs = new Hashtable<>();
+    private static Map<Integer,GuardedObject1> boxs = new ConcurrentHashMap<>();
+
+    private static Map<Integer,GuardedObject1> boxss = new Hashtable<>();
 
     private static int id = 1;
 
