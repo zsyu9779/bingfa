@@ -11,7 +11,8 @@ public class TwoPhaseTerminationTest {
     public static void main(String[] args) throws InterruptedException {
         TwoPhaseTermination twoPhaseTermination = new TwoPhaseTermination();
         twoPhaseTermination.start();
-        Thread.sleep(5000);
+        Thread.sleep(5500);
+        log.debug("停止线程");
         twoPhaseTermination.stop();
 
     }
@@ -19,12 +20,12 @@ public class TwoPhaseTerminationTest {
 @Slf4j(topic = "TwoPhaseTermination")
 class TwoPhaseTermination{
     private Thread monitor;
-
+    private volatile boolean stop = false;
     public void start(){
         monitor = new Thread(()->{
             while (true){
                 Thread current = Thread.currentThread();
-                if (current.isInterrupted()){
+                if (stop){
                     log.debug("料理后事");
                     break;
                 }
@@ -32,8 +33,7 @@ class TwoPhaseTermination{
                     Thread.sleep(1000);
                     log.debug("执行监控记录");
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    current.interrupt();
+
                 }
             }
 
@@ -42,6 +42,8 @@ class TwoPhaseTermination{
 
     }
     public void stop(){
+        stop = true;
+
         monitor.interrupt();
     }
 }

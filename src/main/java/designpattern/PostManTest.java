@@ -2,10 +2,19 @@ package designpattern;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+
+/**
+ * 而HashTable虽然是线程安全的，但是是通过整个来加锁的方式，当一个线程在写操作的时候，另外的线程则不能进行读写。
+ *
+ * 而ConcurrentHashMap则可以支持并发的读写。跟1.7版本相比，1.8版本又有了很大的变化，已经抛弃了Segment的概念，
+ * 虽然源码里面还保留了，也只是为了兼容性的考虑。
+ */
 
 /**
  * @Author: Zsyu
@@ -63,6 +72,8 @@ class Mailboxes {
     private static Map<Integer,GuardedObject1> boxs = new ConcurrentHashMap<>();
 
     private static Map<Integer,GuardedObject1> boxss = new Hashtable<>();
+    private static Map<Integer,GuardedObject1> boxsss = new HashMap<>();
+
 
     private static int id = 1;
 
