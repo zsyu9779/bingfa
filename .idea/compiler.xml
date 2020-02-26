@@ -9,5 +9,8 @@
         <module name="bingfa" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="monitor" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
